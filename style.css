@@ -191,6 +191,32 @@ nav {
     color: white;
     font-size: 5rem;
     margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Para a foto real */
+.profile-img .real-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+/* Ícone de fallback (só aparece se a foto não carregar) */
+.profile-img .fallback-icon {
+    position: relative;
+    z-index: 1;
+    font-size: 5rem;
+}
+
+/* Se a foto carregar, esconde o ícone */
+.profile-img .real-photo.loaded+.fallback-icon {
+    display: none;
 }
 
 .btn {
