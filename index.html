@@ -10,7 +10,9 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Script do EmailJS -->
+    <!-- ===================================================== -->
+    <!-- 1. ADICIONE ESTE SCRIPT DO EMAILJS (NÃO ALTERE) -->
+    <!-- ===================================================== -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
@@ -51,7 +53,9 @@
                     </div>
                 </div>
                 <div class="hero-image">
+                    <!-- AQUI ESTÁ A CORREÇÃO: profile-img (não profile.png) -->
                     <div class="profile-img">
+                        <!-- Coloque sua foto aqui -->
                         <img src="WhatsApp Image 2025-12-07 at 12.26.44.jpeg" alt="Ivan Mbalame - Profissional de TI"
                             class="real-photo" onload="this.classList.add('loaded')">
                         <i class="fas fa-laptop-code fallback-icon"></i>
@@ -60,6 +64,8 @@
             </div>
         </div>
     </section>
+
+    <!-- ... resto do código permanece igual ... -->
 
     <!-- Sobre -->
     <section class="about" id="about">
@@ -83,7 +89,9 @@
                         </div>
                         <div class="info-item">
                             <h4><i class="fas fa-language"></i> Idiomas</h4>
-                            <p>Português (Fluente);<br>Inglês (Básico);<br>Chuabo (Razoável).</p>
+                            <p>Português (Fluente);</p>
+                            <p>Inglês (Básico);</p>
+                            <p>Chuabo (Razoável).</p>
                         </div>
                         <div class="info-item">
                             <h4><i class="fas fa-map-marker-alt"></i> Localização</h4>
@@ -172,7 +180,7 @@
                             <span>99%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 99%"></div>
+                            <div class="skill-level" style="width: 95%"></div>
                         </div>
                     </div>
                 </div>
@@ -254,48 +262,34 @@
                     </div>
 
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/ivan-m%E2%80%99balame-16b065271?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                            target="_blank">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/settings/profile" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.facebook.com/share/16enaiEbU6/?mibextid=wwXIfr" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/ivan-m%E2%80%99balame-16b065271?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/settings/profile"><i class="fab fa-github"></i></a>
+                        <a href="https://www.facebook.com/share/16enaiEbU6/?mibextid=wwXIfr"><i
+                                class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
 
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Seu Nome</label>
-                            <input type="text" id="name" class="form-control" required
-                                placeholder="Digite seu nome completo">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="user_email">Seu Email </label>
-                            <input type="email" id="user_email" class="form-control" required
-                                placeholder="exemplo@email.com">
-
+                            <label for="email">Email de Destinatario</label>
+                            <input type="email" id="email" class="form-control" required>
                         </div>
-                        <div class="form-group">
-                            <label for="recipient_email">Email do Destinatário</label>
-                            <input type="email" id="recipient_email" class="form-control" value="ivanmbalame@gmail.com"
-                                readonly>
-                            
                         <div class="form-group">
                             <label for="subject">Assunto</label>
-                            <input type="text" id="subject" class="form-control" required
-                                placeholder="Ex: Proposta de trabalho, Orçamento, Dúvida">
+                            <input type="text" id="subject" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Sua Mensagem</label>
-                            <textarea id="message" class="form-control" required
-                                placeholder="Escreva sua mensagem aqui..."></textarea>
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" class="form-control" required></textarea>
                         </div>
-                        <button type="submit" class="btn">Enviar Mensagem para Ivan</button>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
                     </form>
                 </div>
             </div>
@@ -308,8 +302,8 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <h3>Ivan<span>Mbalame</span></h3>
-                    <p>Profissional de Tecnologias de Informação especializado em desenvolvimento de software, redes,
-                        hardware e segurança.</p>
+                    <p>Profissional de Tecnologias de Informação especializado</p>
+                    <p>em desenvolvimento de software, redes,hardware e segurança.</p>
                 </div>
 
                 <div class="footer-links">
@@ -326,11 +320,11 @@
                 <div class="footer-links">
                     <h4>Competências</h4>
                     <ul>
-                        <li><a href="#skills">Desenvolvimento Java</a></li>
-                        <li><a href="#skills">React Native</a></li>
-                        <li><a href="#skills">Banco de Dados</a></li>
-                        <li><a href="#skills">Redes & Hardware</a></li>
-                        <li><a href="#skills">Segurança de TI</a></li>
+                        <li><a href="#">Desenvolvimento Java</a></li>
+                        <li><a href="#">React Native</a></li>
+                        <li><a href="#">Banco de Dados</a></li>
+                        <li><a href="#">Redes & Hardware</a></li>
+                        <li><a href="#">Segurança de TI</a></li>
                     </ul>
                 </div>
             </div>
@@ -344,7 +338,5 @@
 
     <script src="script.js"></script>
 </body>
-
-</html>
 
 </html>

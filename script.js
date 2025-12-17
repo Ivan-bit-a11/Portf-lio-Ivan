@@ -1,7 +1,7 @@
 // =====================================================
 // CONFIGURAÇÃO DO EMAILJS
 // =====================================================
-(function () {
+(function() {
     // SUA PUBLIC KEY DO EMAILJS:
     emailjs.init("l2vm_lilzc3RwloMe");
 })();
@@ -17,8 +17,8 @@ const navLinks = document.getElementById('nav-links');
 if (mobileMenu && navLinks) {
     mobileMenu.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-        mobileMenu.innerHTML = navLinks.classList.contains('active')
-            ? '<i class="fas fa-times"></i>'
+        mobileMenu.innerHTML = navLinks.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
             : '<i class="fas fa-bars"></i>';
     });
 }
@@ -50,18 +50,18 @@ window.addEventListener('scroll', () => {
 // =====================================================
 // SMOOTH SCROLL PARA TODOS OS LINKS ÂNCORA
 // =====================================================
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     // Smooth scroll para todos os links com href começando com #
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', function(e) {
             // Verificar se é um link para seção interna
-            if (this.getAttribute('href').startsWith('#') &&
+            if (this.getAttribute('href').startsWith('#') && 
                 this.getAttribute('href').length > 1) {
                 e.preventDefault();
-
+                
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-
+                
                 if (targetElement) {
                     // Fechar menu mobile se aberto
                     if (navLinks && navLinks.classList.contains('active')) {
@@ -70,34 +70,34 @@ document.addEventListener('DOMContentLoaded', function () {
                             mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
                         }
                     }
-
+                    
                     // Calcular posição considerando o header fixo
                     const headerHeight = document.querySelector('header')?.offsetHeight || 80;
                     const targetPosition = targetElement.offsetTop - headerHeight;
-
+                    
                     // Scroll suave
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
                     });
-
+                    
                     // Atualizar URL
                     history.pushState(null, null, targetId);
                 }
             }
         });
     });
-
+    
     // Garantir que a foto carregue corretamente
     const profilePhoto = document.querySelector('.real-photo');
     if (profilePhoto) {
         if (profilePhoto.complete && profilePhoto.naturalHeight !== 0) {
             profilePhoto.classList.add('loaded');
         } else {
-            profilePhoto.addEventListener('error', function () {
+            profilePhoto.addEventListener('error', function() {
                 console.log('Foto não carregada. Verifique o caminho ou nome do arquivo.');
             });
-            profilePhoto.addEventListener('load', function () {
+            profilePhoto.addEventListener('load', function() {
                 this.classList.add('loaded');
             });
         }
@@ -112,13 +112,13 @@ const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-
+        
         // Mostrar estado de carregamento
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Enviando...';
         submitBtn.disabled = true;
-
+        
         try {
             // 1. Coletar dados do formulário
             const formData = {
@@ -136,7 +136,7 @@ if (contactForm) {
                 }),
                 year: new Date().getFullYear()
             };
-
+            
             // 2. Validar formulário
             if (!validateForm(formData)) {
                 showNotification('❌ Por favor, preencha todos os campos obrigatórios.', 'error');
@@ -144,30 +144,30 @@ if (contactForm) {
                 submitBtn.disabled = false;
                 return;
             }
-
+            
             // 3. Enviar usando EmailJS
             const response = await emailjs.send(
                 'service_knkcmdr',      // Service ID
                 'template_xk8ey9i',     // Template ID
                 formData               // Dados do formulário
             );
-
+            
             // 4. Sucesso
             console.log('✅ Email enviado com sucesso:', response);
             showNotification('✅ Mensagem enviada para Ivan! Ele entrará em contato em breve.', 'success');
-
+            
             // Resetar apenas alguns campos
             document.getElementById('name').value = '';
             document.getElementById('user_email').value = '';
             document.getElementById('subject').value = '';
             document.getElementById('message').value = '';
             // Manter o email do destinatário
-
+            
         } catch (error) {
             // 5. Erro
             console.error('❌ Erro ao enviar email:', error);
             showNotification('❌ Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente.', 'error');
-
+            
         } finally {
             // 6. Restaurar botão
             submitBtn.textContent = originalText;
@@ -181,19 +181,19 @@ function validateForm(data) {
     if (!data.name || data.name.trim().length < 2) {
         return false;
     }
-
+    
     if (!data.user_email || !isValidEmail(data.user_email)) {
         return false;
     }
-
+    
     if (!data.subject || data.subject.trim().length < 3) {
         return false;
     }
-
+    
     if (!data.message || data.message.trim().length < 10) {
         return false;
     }
-
+    
     return true;
 }
 
@@ -212,7 +212,7 @@ function showNotification(message, type) {
     if (existingNotification) {
         existingNotification.remove();
     }
-
+    
     // Criar nova notificação
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
@@ -223,26 +223,26 @@ function showNotification(message, type) {
         </div>
         <button class="notification-close"><i class="fas fa-times"></i></button>
     `;
-
+    
     // Adicionar ao corpo
     document.body.appendChild(notification);
-
+    
     // Mostrar notificação
     setTimeout(() => {
         notification.classList.add('show');
     }, 10);
-
+    
     // Fechar notificação após 5 segundos
     const autoClose = setTimeout(() => {
         closeNotification(notification);
     }, 5000);
-
+    
     // Fechar ao clicar no botão
     notification.querySelector('.notification-close').addEventListener('click', () => {
         clearTimeout(autoClose);
         closeNotification(notification);
     });
-
+    
     // Fechar ao clicar na notificação
     notification.addEventListener('click', (e) => {
         if (!e.target.closest('.notification-close')) {
@@ -289,7 +289,7 @@ const skillBarsObserver = new IntersectionObserver((entries) => {
             if (skillLevel) {
                 const width = skillLevel.style.width;
                 skillLevel.style.width = '0';
-
+                
                 setTimeout(() => {
                     skillLevel.style.transition = 'width 1.5s ease-in-out';
                     skillLevel.style.width = width;
