@@ -53,7 +53,9 @@
                     </div>
                 </div>
                 <div class="hero-image">
+                    <!-- AQUI ESTÁ A CORREÇÃO: profile-img (não profile.png) -->
                     <div class="profile-img">
+                        <!-- Coloque sua foto aqui -->
                         <img src="WhatsApp Image 2025-12-07 at 12.26.44.jpeg" alt="Ivan Mbalame - Profissional de TI"
                             class="real-photo" onload="this.classList.add('loaded')">
                         <i class="fas fa-laptop-code fallback-icon"></i>
@@ -62,6 +64,8 @@
             </div>
         </div>
     </section>
+
+    <!-- ... resto do código permanece igual ... -->
 
     <!-- Sobre -->
     <section class="about" id="about">
@@ -176,7 +180,7 @@
                             <span>99%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-level" style="width: 99%"></div>
+                            <div class="skill-level" style="width: 95%"></div>
                         </div>
                     </div>
                 </div>
@@ -258,48 +262,34 @@
                     </div>
 
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/ivan-m%E2%80%99balame-16b065271?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                            target="_blank">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/settings/profile" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.facebook.com/share/16enaiEbU6/?mibextid=wwXIfr" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/ivan-m%E2%80%99balame-16b065271?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/settings/profile"><i class="fab fa-github"></i></a>
+                        <a href="https://www.facebook.com/share/16enaiEbU6/?mibextid=wwXIfr"><i
+                                class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
 
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Seu Nome</label>
-                            <input type="text" id="name" class="form-control" required placeholder="Digite seu nome">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="user_email">Seu Email (para resposta)</label>
-                            <input type="email" id="user_email" class="form-control" required
-                                placeholder="seu@email.com">
-                            <small class="form-text">Digite SEU email para que eu possa responder</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient_email">Email do Destinatário</label>
-                            <input type="email" id="recipient_email" class="form-control" value="ivanmbalame@gmail.com"
-                                readonly>
-                            <small class="form-text">Esta mensagem será enviada para Ivan Mbalame</small>
+                            <label for="email">Email de Destinatario</label>
+                            <input type="email" id="email" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="subject">Assunto</label>
-                            <input type="text" id="subject" class="form-control" required
-                                placeholder="Ex: Proposta de trabalho ou orçamento">
+                            <input type="text" id="subject" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Sua Mensagem</label>
-                            <textarea id="message" class="form-control" required
-                                placeholder="Escreva sua mensagem para Ivan aqui..."></textarea>
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" class="form-control" required></textarea>
                         </div>
-                        <button type="submit" class="btn">Enviar Mensagem para Ivan</button>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
                     </form>
                 </div>
             </div>
@@ -348,5 +338,3 @@
 
     <script src="script.js"></script>
 </body>
-
-</html>
