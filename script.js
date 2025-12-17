@@ -1,10 +1,8 @@
 // =====================================================
-// CONFIGURAÇÃO DO EMAILJS (SUA PUBLIC KEY AQUI ↓)
+// CONFIGURAÇÃO DO EMAILJS
 // =====================================================
 (function () {
-    // INSIRA SUA PUBLIC KEY DO EMAILJS AQUI:
-    // Vá em: EmailJS Dashboard → Account → API Keys → Public Key
-    // Copie a chave que começa com "user_" e cole abaixo:
+    // SUA PUBLIC KEY DO EMAILJS:
     emailjs.init("l2vm_lilzc3RwloMe");
 })();
 
@@ -56,55 +54,49 @@ document.addEventListener('DOMContentLoaded', function () {
     // Smooth scroll para todos os links com href começando com #
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+            // Verificar se é um link para seção interna
+            if (this.getAttribute('href').startsWith('#') &&
+                this.getAttribute('href').length > 1) {
+                e.preventDefault();
 
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
 
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                // Fechar menu mobile se aberto
-                if (navLinks && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    if (mobileMenu) {
-                        mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                if (targetElement) {
+                    // Fechar menu mobile se aberto
+                    if (navLinks && navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        if (mobileMenu) {
+                            mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
                     }
+
+                    // Calcular posição considerando o header fixo
+                    const headerHeight = document.querySelector('header')?.offsetHeight || 80;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+
+                    // Scroll suave
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Atualizar URL
+                    history.pushState(null, null, targetId);
                 }
-
-                // Calcular posição considerando o header fixo
-                const headerHeight = document.querySelector('header')?.offsetHeight || 80;
-                const targetPosition = targetElement.offsetTop - headerHeight;
-
-                // Scroll suave
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-
-                // Atualizar URL sem recarregar a página
-                history.pushState(null, null, targetId);
             }
         });
     });
 
     // Garantir que a foto carregue corretamente
     const profilePhoto = document.querySelector('.real-photo');
-    const fallbackIcon = document.querySelector('.fallback-icon');
-
     if (profilePhoto) {
-        // Verifica se a foto carregou
         if (profilePhoto.complete && profilePhoto.naturalHeight !== 0) {
             profilePhoto.classList.add('loaded');
         } else {
-            // Se não carregar, mostra mensagem no console
             profilePhoto.addEventListener('error', function () {
                 console.log('Foto não carregada. Verifique o caminho ou nome do arquivo.');
-                if (fallbackIcon) {
-                    fallbackIcon.style.display = 'flex';
-                }
             });
-
-            // Tenta carregar novamente
             profilePhoto.addEventListener('load', function () {
                 this.classList.add('loaded');
             });
@@ -131,24 +123,23 @@ if (contactForm) {
             // 1. Coletar dados do formulário
             const formData = {
                 name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
+                user_email: document.getElementById('user_email').value, // Email do visitante
+                recipient_email: document.getElementById('recipient_email').value, // Seu email
                 subject: document.getElementById('subject').value,
                 message: document.getElementById('message').value,
                 date: new Date().toLocaleString('pt-MZ', {
                     day: '2-digit',
-                    month: '2-digit',
+                    month: 'long',
                     year: 'numeric',
                     hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit'
+                    minute: '2-digit'
                 }),
-                year: new Date().getFullYear(),
-                user_ip: 'Não disponível'
+                year: new Date().getFullYear()
             };
 
             // 2. Validar formulário
             if (!validateForm(formData)) {
-                showNotification('❌ Por favor, preencha todos os campos corretamente.', 'error');
+                showNotification('❌ Por favor, preencha todos os campos obrigatórios.', 'error');
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 return;
@@ -156,24 +147,26 @@ if (contactForm) {
 
             // 3. Enviar usando EmailJS
             const response = await emailjs.send(
-                // INSIRA SEU SERVICE ID AQUI:
-                'service_knkcmdr',
-
-                // INSIRA SEU TEMPLATE ID AQUI:
-                'template_xk8ey9i',
-
-                formData
+                'service_knkcmdr',      // Service ID
+                'template_xk8ey9i',     // Template ID
+                formData               // Dados do formulário
             );
 
             // 4. Sucesso
             console.log('✅ Email enviado com sucesso:', response);
-            showNotification('✅ Mensagem enviada com sucesso! Entrarei em contato em breve.', 'success');
-            contactForm.reset();
+            showNotification('✅ Mensagem enviada para Ivan! Ele entrará em contato em breve.', 'success');
+
+            // Resetar apenas alguns campos
+            document.getElementById('name').value = '';
+            document.getElementById('user_email').value = '';
+            document.getElementById('subject').value = '';
+            document.getElementById('message').value = '';
+            // Manter o email do destinatário
 
         } catch (error) {
             // 5. Erro
             console.error('❌ Erro ao enviar email:', error);
-            showNotification('❌ Erro ao enviar mensagem. Tente novamente ou entre em contato pelo email.', 'error');
+            showNotification('❌ Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente.', 'error');
 
         } finally {
             // 6. Restaurar botão
@@ -189,7 +182,7 @@ function validateForm(data) {
         return false;
     }
 
-    if (!data.email || !isValidEmail(data.email)) {
+    if (!data.user_email || !isValidEmail(data.user_email)) {
         return false;
     }
 
@@ -271,11 +264,6 @@ function closeNotification(notification) {
 // =====================================================
 // ANIMAÇÕES AO SCROLL
 // =====================================================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -283,7 +271,7 @@ const observer = new IntersectionObserver((entries) => {
             entry.target.style.transform = 'translateY(0)';
         }
     });
-}, observerOptions);
+}, { threshold: 0.1 });
 
 // Observar elementos para animação
 document.querySelectorAll('.skill-category, .timeline-content, .info-item').forEach(el => {
@@ -306,8 +294,6 @@ const skillBarsObserver = new IntersectionObserver((entries) => {
                     skillLevel.style.transition = 'width 1.5s ease-in-out';
                     skillLevel.style.width = width;
                 }, 300);
-
-                skillBarsObserver.unobserve(entry.target);
             }
         }
     });
@@ -319,9 +305,9 @@ document.querySelectorAll('.skill-item').forEach(item => {
 });
 
 // =====================================================
-// FUNÇÃO PARA TESTE RÁPIDO
+// TESTE DE FUNCIONAMENTO
 // =====================================================
-// Teste se os botões estão funcionando
-console.log('Portfólio carregado!');
-console.log('Botão "Entre em Contato" deve funcionar agora.');
-console.log('Clique nele para ir para a seção de contato.');
+console.log('✅ Portfólio Ivan Mbalame carregado com sucesso!');
+console.log('📧 Sistema de contato configurado com EmailJS');
+console.log('📍 Botões de navegação funcionando');
+console.log('🎨 Animações ativas');
