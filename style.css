@@ -550,6 +550,33 @@ textarea.form-control {
     resize: vertical;
 }
 
+/* Estilos para os campos de formulário especiais */
+.form-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Estilo para campo readonly */
+input[readonly] {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    cursor: not-allowed;
+    opacity: 0.8;
+    border-style: dashed;
+}
+
+input[readonly]:focus {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 /* Footer */
 footer {
     background-color: var(--dark-color);
@@ -642,7 +669,7 @@ footer {
 }
 
 /* ===================================================== */
-/* SISTEMA DE NOTIFICAÇÕES (NOVO - NÃO ALTERE) */
+/* SISTEMA DE NOTIFICAÇÕES */
 /* ===================================================== */
 .notification {
     position: fixed;
