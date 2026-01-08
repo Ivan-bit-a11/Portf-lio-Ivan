@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Garantir que a foto carregue corretamente
+    // Verificar se a foto carrega corretamente
     const profilePhoto = document.querySelector('.real-photo');
     const fallbackIcon = document.querySelector('.fallback-icon');
 
@@ -110,7 +110,51 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
+
+    // =====================================================
+    // VERIFICAÇÃO E NOTIFICAÇÃO PARA DOWNLOAD DO CV
+    // =====================================================
+    const cvLinks = document.querySelectorAll('a[href*="cv_ivan_mbalame.pdf"]');
+    
+    if (cvLinks.length > 0) {
+        // Verificar se o arquivo do CV existe
+        checkCVFile();
+        
+        // Adicionar evento de clique para os links do CV
+        cvLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Não interromper o download, mas mostrar notificação
+                setTimeout(() => {
+                    showNotification('✅ Download do CV iniciado!', 'success');
+                }, 100);
+                
+                // Registro no console
+                console.log('Iniciando download do CV...');
+            });
+        });
+    }
 });
+
+// =====================================================
+// FUNÇÃO PARA VERIFICAR ARQUIVO DO CV
+// =====================================================
+function checkCVFile() {
+    const cvUrl = 'cv_ivan_mbalame.pdf';
+    
+    // Verificar se o arquivo existe
+    fetch(cvUrl, { method: 'HEAD' })
+        .then(response => {
+            if (response.ok) {
+                console.log('✅ Arquivo do CV encontrado:', cvUrl);
+            } else {
+                console.warn('⚠️ Arquivo do CV não encontrado. Por favor, crie o arquivo "cv_ivan_mbalame.pdf" na pasta do projeto.');
+                showNotification('⚠️ Por favor, crie o arquivo PDF do seu CV e nomeie como "cv_ivan_mbalame.pdf"', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('❌ Erro ao verificar arquivo do CV:', error);
+        });
+}
 
 // =====================================================
 // FUNÇÃO PARA ENVIO DE EMAIL (FORMULÁRIO DE CONTATO)
@@ -319,9 +363,14 @@ document.querySelectorAll('.skill-item').forEach(item => {
 });
 
 // =====================================================
-// FUNÇÃO PARA TESTE RÁPIDO
+// MENSAGEM DE CONSOLE PARA DESENVOLVEDOR
 // =====================================================
-// Teste se os botões estão funcionando
-console.log('Portfólio carregado!');
-console.log('Botão "Entre em Contato" deve funcionar agora.');
-console.log('Clique nele para ir para a seção de contato.');
+console.log('============================================');
+console.log('PORTFÓLIO IVAN MBALAME');
+console.log('============================================');
+console.log('✅ Funcionalidades implementadas:');
+console.log('   1. Download do CV (verifique se o arquivo "cv_ivan_mbalame.pdf" existe)');
+console.log('   2. Formulário de contato com EmailJS');
+console.log('   3. Navegação responsiva');
+console.log('   4. Animações ao scroll');
+console.log('============================================');

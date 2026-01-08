@@ -10,9 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- ===================================================== -->
-    <!-- 1. ADICIONE ESTE SCRIPT DO EMAILJS (NÃO ALTERE) -->
-    <!-- ===================================================== -->
+    <!-- Script do EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
@@ -47,15 +45,17 @@
                     <p>Profissional de Tecnologias de Informação especializado em desenvolvimento de software, redes,
                         hardware e segurança. Licenciado em Tecnologias de Informação pela Universidade Católica de
                         Moçambique.</p>
-                    <div>
+                    <div class="hero-buttons">
                         <a href="#contact" class="btn">Entre em Contato</a>
                         <a href="#about" class="btn btn-outline">Saiba Mais</a>
+                        <!-- NOVO BOTÃO PARA DOWNLOAD DO CV -->
+                        <a href="cv_ivan_mbalame.pdf" class="btn btn-cv" download="Ivan_Mbalame_CV.pdf">
+                            <i class="fas fa-download"></i> Baixar CV <span class="pdf-indicator">PDF</span>
+                        </a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <!-- AQUI ESTÁ A CORREÇÃO: profile-img (não profile.png) -->
                     <div class="profile-img">
-                        <!-- Coloque sua foto aqui -->
                         <img src="WhatsApp Image 2025-12-07 at 12.26.44.jpeg" alt="Ivan Mbalame - Profissional de TI"
                             class="real-photo" onload="this.classList.add('loaded')">
                         <i class="fas fa-laptop-code fallback-icon"></i>
@@ -64,8 +64,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ... resto do código permanece igual ... -->
 
     <!-- Sobre -->
     <section class="about" id="about">
@@ -97,6 +95,13 @@
                             <h4><i class="fas fa-map-marker-alt"></i> Localização</h4>
                             <p>Acordos de Lusaka, Quelimane, Zambézia, Moçambique</p>
                         </div>
+                    </div>
+
+                    <!-- Ações adicionais na seção Sobre -->
+                    <div class="about-actions">
+                        <a href="cv_ivan_mbalame.pdf" class="btn btn-cv" download="Ivan_Mbalame_CV.pdf">
+                            <i class="fas fa-download"></i> Download do Currículo Completo
+                        </a>
                     </div>
                 </div>
             </div>
@@ -336,5 +341,13 @@
         </div>
     </footer>
 
+    <!-- Botão flutuante para download do CV -->
+    <a href="cv_ivan_mbalame.pdf" class="floating-cv-btn" download="Ivan_Mbalame_CV.pdf" title="Baixar Currículo">
+        <i class="fas fa-file-download"></i>
+        <span>CV</span>
+    </a>
+
     <script src="script.js"></script>
 </body>
+
+</html>

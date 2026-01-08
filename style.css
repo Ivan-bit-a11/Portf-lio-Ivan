@@ -219,6 +219,7 @@ nav {
     display: none;
 }
 
+/* Botões */
 .btn {
     display: inline-block;
     background-color: var(--accent-color);
@@ -247,6 +248,81 @@ nav {
 
 .btn-outline:hover {
     background-color: var(--accent-color);
+}
+
+/* NOVO: Estilo para botão de download do CV */
+.btn-cv {
+    background-color: #10b981;
+    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-cv:hover {
+    background-color: #0ea271;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+}
+
+.pdf-indicator {
+    font-size: 0.8em;
+    background-color: #f44336;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+/* Para os botões na hero section */
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Seção de ações na seção sobre */
+.about-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* Botão flutuante para download do CV */
+.floating-cv-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--accent-color);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.floating-cv-btn:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+}
+
+.floating-cv-btn i {
+    font-size: 24px;
+    margin-bottom: 2px;
+}
+
+.floating-cv-btn span {
+    font-size: 11px;
+    font-weight: 600;
 }
 
 /* Sections Gerais */
@@ -642,7 +718,7 @@ footer {
 }
 
 /* ===================================================== */
-/* SISTEMA DE NOTIFICAÇÕES (NOVO - NÃO ALTERE) */
+/* SISTEMA DE NOTIFICAÇÕES */
 /* ===================================================== */
 .notification {
     position: fixed;
@@ -807,6 +883,35 @@ footer {
         min-width: 250px;
         max-width: 300px;
         right: 10px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-buttons .btn,
+    .hero-buttons .btn-outline,
+    .hero-buttons .btn-cv {
+        margin-left: 0;
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .floating-cv-btn {
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .floating-cv-btn i {
+        font-size: 20px;
+    }
+
+    .floating-cv-btn span {
+        font-size: 10px;
     }
 }
 
